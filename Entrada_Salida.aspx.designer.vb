@@ -32,6 +32,96 @@ Partial Public Class Entrada_Salida
     Protected WithEvents Image1 As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
+    '''Control saludo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents saludo As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Control Label1.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control btnCerrarSaludo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnCerrarSaludo As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Control horaEntrada.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents horaEntrada As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Control lblHoraEntrada.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblHoraEntrada As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control btnCerrarHoraEntrada.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnCerrarHoraEntrada As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Control tiempoTrabajado.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents tiempoTrabajado As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Control lblTiempoTrabajado.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblTiempoTrabajado As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control btnCancelarSalida.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnCancelarSalida As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Control btnConfirmarSalida.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnConfirmarSalida As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''Control Table1.
     '''</summary>
     '''<remarks>
@@ -104,13 +194,13 @@ Partial Public Class Entrada_Salida
     Protected WithEvents ImageButton6 As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
-    '''Control LabelEntrada.
+    '''Control lblEntrada.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents LabelEntrada As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblEntrada As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Control Entrada.
@@ -122,22 +212,22 @@ Partial Public Class Entrada_Salida
     Protected WithEvents Entrada As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
-    '''Control LabelSalida.
+    '''Control lblSalida.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents LabelSalida As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblSalida As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control Salida.
+    '''Control btnSalida.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Salida As Global.System.Web.UI.WebControls.ImageButton
+    Protected WithEvents btnSalida As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
     '''Control ImageButton7.
