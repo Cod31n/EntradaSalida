@@ -23,13 +23,13 @@ Partial Public Class Entrada_Salida
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''Control Image1.
+    '''Control btnCabecera.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Image1 As Global.System.Web.UI.WebControls.Image
+    Protected WithEvents btnCabecera As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
     '''Control saludo.

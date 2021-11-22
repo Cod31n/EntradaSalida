@@ -8,15 +8,15 @@
     <title></title>
     <style type="text/css">
         #form1 {
-            height: 80px;
-            width: 1260px;
+            height: 85px;
+            width: 1436px;
         }
     </style>
 </head>
 <body>
        
-    <form id="form1" runat="server" style="position:relative">
-        <asp:Image ID="Image1" runat="server" ImageUrl="~/Resources/cabecera.png" Height="89px" Width="1697px" />
+    <form id="form1" runat="server" style="position:relative; top: 0px; left: 0px;">
+        <asp:ImageButton ID="btnCabecera" runat="server" ImageUrl="~/Resources/cabecera.png" Height="89px" Width="1697px" />
         <div id="saludo" visible="false" runat="server" style="left: 500px; top:300px; background-color:ghostwhite; position:absolute; z-index:2;height: 105px; width: 400px; border-style:solid">
                     <asp:Label ID="Label1" runat="server" Text="¡Hola! Deberías registrar tu entrada pulsando el botón de 'Entrar'"></asp:Label>
                 <br />
