@@ -7,7 +7,7 @@ Public Class Entrada_Salida
 
     Private Sub Entrada_Salida_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not Me.IsPostBack Then
-            Saludo.Visible = True
+            saludo.Visible = True
         End If
 
     End Sub
@@ -29,11 +29,11 @@ Public Class Entrada_Salida
 
         'Conexion SQL2000
         Dim ConexionAbierta As Boolean = False
-        Dim cSelect As New System.Data.SqlClient.SqlCommand
+        Dim comando As New System.Data.SqlClient.SqlCommand
         Dim miCon As New System.Data.SqlClient.SqlConnection(B_CadenaConexionBBDD)
         Dim cadenaSQL As String =
         $"       
-        insert into Registro_Entrada_Salida(idUsuario,entrada,idUsuario_Creado)values(@idUsuario,@entrada,@idUsuario);SELECT SCOPE_IDENTITY()        
+        insert into Registro_Entrada_Salida(idUsuario,entrada,creado_idUsuario,tipoRegistro)values(@idUsuario,@entrada,@idUsuario,@registro);SELECT SCOPE_IDENTITY()        
 
         "
 
@@ -44,22 +44,26 @@ Public Class Entrada_Salida
             idUSuario = New System.Data.SqlClient.SqlParameter
             idUSuario.ParameterName = "idUsuario"
             idUSuario.Value = 28850
-            cSelect.Parameters.Add(idUSuario)
+            comando.Parameters.Add(idUSuario)
 
 
             Dim entry = New System.Data.SqlClient.SqlParameter
             entry.ParameterName = "entrada"
             entry.Value = DateTime.Now
-            cSelect.Parameters.Add(entry)
+            comando.Parameters.Add(entry)
 
+            Dim registro = New SqlParameter
+            registro.ParameterName = "registro"
+            registro.Value = "jornada laboral"
+            comando.Parameters.Add(registro)
 
-            cSelect.Connection = miCon
-            cSelect.CommandText = cadenaSQL 'nombre del S.P.
+            comando.Connection = miCon
+            comando.CommandText = cadenaSQL 'nombre del S.P.
 
             miCon.Open()
             ConexionAbierta = True
 
-            Dim r = cSelect.ExecuteScalar
+            Dim r = comando.ExecuteScalar
             Debug.WriteLine(r.ToString)
 
 
@@ -71,7 +75,7 @@ Public Class Entrada_Salida
             Throw ex
         Finally
             If ConexionAbierta Then miCon.Close()
-            cSelect = Nothing
+            comando = Nothing
             miCon = Nothing
         End Try
     End Function
