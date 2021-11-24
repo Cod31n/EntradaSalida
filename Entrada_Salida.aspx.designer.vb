@@ -194,15 +194,6 @@ Partial Public Class Entrada_Salida
     Protected WithEvents ImageButton6 As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
-    '''Control lblEntrada.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblEntrada As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''Control Entrada.
     '''</summary>
     '''<remarks>
@@ -210,15 +201,6 @@ Partial Public Class Entrada_Salida
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents Entrada As Global.System.Web.UI.WebControls.ImageButton
-
-    '''<summary>
-    '''Control lblSalida.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblSalida As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Control btnSalida.

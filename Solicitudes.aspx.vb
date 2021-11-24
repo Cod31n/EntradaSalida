@@ -9,20 +9,81 @@ Public Class Baja1
 
     End Sub
 
+    Public Sub ElegirBaja()
+        Dim fechaInicio As Date
+        Dim fechaFin As Date
+
+        If contadorBaja.Value = 0 Then
+            fechaInicio = calBaja.SelectedDate
+            If fechaInicio.DayOfWeek = DayOfWeek.Saturday Or fechaInicio.DayOfWeek = DayOfWeek.Sunday Then
+                divErrores.Visible = True
+                lblError.Text = "No se pueden seleccionar días no laborables"
+                btnSetBaja.Enabled = False
+            Else
+                hdnFechaIniBaja.Value = fechaInicio
+                lblIniBaja.Text = lblIniBaja.Text & fechaInicio.ToString
+                btnSetBaja.Text = "Establecer Fecha Fin"
+            End If
+
+        ElseIf contadorBaja.Value = 1 Then
+            fechaFin = calBaja.SelectedDate
+
+            If fechaInicio.DayOfWeek = DayOfWeek.Saturday Or fechaInicio.DayOfWeek = DayOfWeek.Sunday Then
+                divErrores.Visible = True
+                lblError.Text = "No se pueden seleccionar días no laborables"
+                btnSetBaja.Enabled = False
+            Else
+                hdnFechaFinBaja.Value = fechaFin
+                If Date.Compare(hdnFechaIniBaja.Value, hdnFechaFinBaja.Value) > 0 Then
+                    divErrores.Visible = True
+                    lblError.Text = "La fecha de fin de baja no puede ser anterior a la fecha de inicio"
+                    btnSetBaja.Enabled = False
+                Else
+                    lblFinBaja.Text = lblFinBaja.Text & fechaFin.ToString
+                    btnSetBaja.Enabled = False
+
+                End If
+                'ElseIf contadorBaja.Value = 2 Then
+                '    If Date.Compare(hdnFechaIniBaja.Value, hdnFechaFinBaja.Value) > 0 Then
+                '        divErrores.Visible = True
+                '        lblError.Text = "La fecha de fin de baja no puede ser anterior a la fecha de inicio"
+                '    Else
+                '        SolicitarVacaciones(hdnFechaIniBaja.Value, hdnFechaFinBaja.Value)
+                '    End If
+            End If
+        End If
+
+        contadorBaja.Value += 1
+    End Sub
+
     Public Sub ElegirVacaciones()
         Dim fechaInicio As Date
         Dim fechaFin As Date
 
         If contadorCal.Value = 0 Then
             fechaInicio = calVacaciones.SelectedDate
-            hdnfechaIni.Value = fechaInicio
-            lblInicioVacaciones.Text = lblInicioVacaciones.Text & fechaInicio.ToString
-            btnSetVacaciones.Text = "Establecer Fecha Fin"
+            If fechaInicio.DayOfWeek = DayOfWeek.Saturday Or fechaInicio.DayOfWeek = DayOfWeek.Sunday Then
+                divErrores.Visible = True
+                lblError.Text = "No se pueden seleccionar días no laborables"
+                btnSetVacaciones.Enabled = False
+            Else
+                hdnfechaIni.Value = fechaInicio
+                lblInicioVacaciones.Text = lblInicioVacaciones.Text & fechaInicio.ToString
+                btnSetVacaciones.Text = "Establecer Fecha Fin"
+            End If
+
         ElseIf contadorCal.Value = 1 Then
             fechaFin = calVacaciones.SelectedDate
-            hdnfechaF.Value = fechaFin
-            lblFinVacaciones.Text = lblFinVacaciones.Text & fechaFin.ToString
-            btnSetVacaciones.Text = "Solicitar Vacaciones"
+            If fechaFin.DayOfWeek = DayOfWeek.Saturday Or fechaInicio.DayOfWeek = DayOfWeek.Sunday Then
+                divErrores.Visible = True
+                lblError.Text = "No se pueden seleccionar días no laborables"
+                btnSetBaja.Enabled = False
+            Else
+                hdnfechaF.Value = fechaFin
+                lblFinVacaciones.Text = lblFinVacaciones.Text & fechaFin.ToString
+                btnSetVacaciones.Text = "Solicitar Vacaciones"
+            End If
+
         ElseIf contadorCal.Value = 2 Then
             If Date.Compare(hdnfechaIni.Value, hdnfechaF.Value) < 0 Then
                 SolicitarVacaciones(hdnfechaIni.Value, hdnfechaF.Value)
@@ -46,50 +107,61 @@ Public Class Baja1
                                                     database=mibd;server=(local)"
 
         Dim ConexionAbierta As Boolean = False
-        Dim cSelect As New System.Data.SqlClient.SqlCommand
+        Dim comando As New System.Data.SqlClient.SqlCommand
         Dim miCon As New System.Data.SqlClient.SqlConnection(B_CadenaConexionBBDD)
         Dim cadenaSQL As String =
         $"
        
-        insert into Registro_Entrada_Salida(idUsuario,creado_idUsuario,fechaInicio,fechaFin,tipoRegistro,estado_SolicitudVacaciones)values(@idUsuario,@idUsuario,@fechaInicio,@fechaFin,@registro,@estadoVacas);SELECT SCOPE_IDENTITY()
+        insert into Registro_Entrada_Salida(idUsuario,inicio_fecha,fin_fecha,tipo_solicitud,estado_solicitud,creado_idUsuario,creado_fecha,eliminado)values(@idUsuario,@fechaInicio,@fechaFin,@registro,@estadoVacas,@idUsuario,@fechaCreado,@eliminado);SELECT SCOPE_IDENTITY()
         
         "
 
         Try
-            Dim idUSuario As System.Data.SqlClient.SqlParameter
-            idUSuario = New System.Data.SqlClient.SqlParameter
-            idUSuario.ParameterName = "idUsuario"
-            idUSuario.Value = 28850
-            cSelect.Parameters.Add(idUSuario)
+            Dim Parametro As System.Data.SqlClient.SqlParameter
+
+            Parametro = New System.Data.SqlClient.SqlParameter
+            Parametro.ParameterName = "idUsuario"
+            Parametro.Value = 28850
+            comando.Parameters.Add(Parametro)
 
 
-            Dim fechaInicio = New System.Data.SqlClient.SqlParameter
-            fechaInicio.ParameterName = "fechaInicio"
-            fechaInicio.Value = fIni
-            cSelect.Parameters.Add(fechaInicio)
+            Parametro = New System.Data.SqlClient.SqlParameter
+            Parametro.ParameterName = "fechaInicio"
+            Parametro.Value = fIni
+            comando.Parameters.Add(Parametro)
 
             Dim fechaFin = New System.Data.SqlClient.SqlParameter
             fechaFin.ParameterName = "fechaFin"
             fechaFin.Value = fFin
-            cSelect.Parameters.Add(fechaFin)
+            comando.Parameters.Add(fechaFin)
 
             Dim registro = New System.Data.SqlClient.SqlParameter
             registro.ParameterName = "registro"
             registro.Value = "vacaciones"
-            cSelect.Parameters.Add(registro)
+            comando.Parameters.Add(registro)
 
             Dim estadoVacas = New System.Data.SqlClient.SqlParameter
             estadoVacas.ParameterName = "estadoVacas"
             estadoVacas.Value = "solicitado"
-            cSelect.Parameters.Add(estadoVacas)
+            comando.Parameters.Add(estadoVacas)
 
-            cSelect.Connection = miCon
-            cSelect.CommandText = cadenaSQL 'nombre del S.P.
+            Dim creadoFecha = New SqlParameter
+            creadoFecha.ParameterName = "fechaCreado"
+            creadoFecha.Value = DateTime.Now
+            comando.Parameters.Add(creadoFecha)
+
+            Dim eliminado = New SqlParameter
+            eliminado.ParameterName = "eliminado"
+            eliminado.Value = 0
+            comando.Parameters.Add(eliminado)
+
+            comando.Connection = miCon
+            comando.CommandText = cadenaSQL 'nombre del S.P.
 
             miCon.Open()
             ConexionAbierta = True
 
-            Dim r = cSelect.ExecuteScalar
+            Dim r = comando.ExecuteScalar
 
 
             Errores = r.ToString
@@ -100,7 +172,7 @@ Public Class Baja1
             Throw ex
         Finally
             If ConexionAbierta Then miCon.Close()
-            cSelect = Nothing
+            comando = Nothing
             miCon = Nothing
             Response.Redirect("Entrada_Salida")
         End Try
@@ -109,11 +181,7 @@ Public Class Baja1
 
     Public Sub SubirParteMedico(parteMed As FileUpload)
         Dim carpetaArchivos As String = Server.MapPath("~\PartesMedicos\")
-
         parteMed.SaveAs(carpetaArchivos & Path.GetFileName(parteMed.FileName))
-
-
-
     End Sub
 
     Private Sub comboSolicitud_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboSolicitud.SelectedIndexChanged
@@ -126,18 +194,32 @@ Public Class Baja1
         End If
     End Sub
 
-
+#Region "Eventos"
     Private Sub btnSetVacaciones_Click(sender As Object, e As EventArgs) Handles btnSetVacaciones.Click
         ElegirVacaciones()
+    End Sub
+
+    Private Sub btnSetBaja_Click(sender As Object, e As EventArgs) Handles btnSetBaja.Click
+        ElegirBaja()
     End Sub
 
     Private Sub btnCancelarVacaciones_Click(sender As Object, e As EventArgs) Handles btnCancelarVacaciones.Click
         lblInicioVacaciones.Text = "Inicio vacaciones: "
         lblFinVacaciones.Text = "Fin vacaciones: "
-        btnSetVacaciones.Text = "Elegir Fecha Inicio"
+        btnSetVacaciones.Text = "Establecer días de vacaciones:"
         divErrores.Visible = False
         lblError.Text = ""
         contadorCal.Value = 0
+    End Sub
+
+    Private Sub btnCancelarBaja_Click(sender As Object, e As EventArgs) Handles btnCancelarBaja.Click
+        lblIniBaja.Text = "Inicio baja: "
+        lblFinBaja.Text = "Fin baja: "
+        btnSetBaja.Text = "Establecer días de baja:"
+        divErrores.Visible = False
+        lblError.Text = ""
+        contadorBaja.Value = 0
+        btnSetBaja.Enabled = True
     End Sub
 
     Private Sub btnConfirmarBaja_Click(sender As Object, e As EventArgs) Handles btnConfirmarBaja.Click
@@ -145,29 +227,7 @@ Public Class Baja1
         Dim Errores As String = ""
         Dim B_CadenaConexionBBDD As String = "Persist Security Info=False;Integrated Security=true;  
                                                     Initial Catalog=mibd;Server=MSSQL1; Persist Security Info=False;Integrated Security=SSPI;  
-                                                    database=mibd;server=(local); Persist Security Info=False;Trusted_Connection=True;  
-                                                    database=mibd;server=(local)"
-
-        'Dim filename As String = Path.GetFileName(flParte.PostedFile.FileName)
-        'Dim contentType As String = flParte.PostedFile.ContentType
-        'Using fs As Stream = flParte.PostedFile.InputStream
-        '    Using br As New BinaryReader(fs)
-        '        Dim bytes As Byte() = br.ReadBytes(CType(fs.Length, Integer))
-
-        '        Using con As New SqlConnection(B_CadenaConexionBBDD)
-        '            Dim query As String = "INSERT INTO Archivos VALUES (@Name, @ContentType, @Data)"
-        '            Using cmd As New SqlCommand(query)
-        '                cmd.Connection = con
-        '                cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = filename
-        '                cmd.Parameters.Add("@ContentType", SqlDbType.VarChar).Value = contentType
-        '                cmd.Parameters.Add("@Data", SqlDbType.Binary).Value = bytes
-        '                con.Open()
-        '                cmd.ExecuteNonQuery()
-        '                con.Close()
-        '            End Using
-        '        End Using
-        '    End Using
-        'End Using
+                                                    database=mibd;server=(local); Persist Security Info=False;Trusted_Connection=True"
 
 
         Dim ConexionAbierta As Boolean = False
@@ -175,7 +235,7 @@ Public Class Baja1
         Dim miCon As New System.Data.SqlClient.SqlConnection(B_CadenaConexionBBDD)
         Dim cadenaSQL As String =
         $"       
-        insert into Registro_Entrada_Salida(idUsuario,creado_idUsuario,fechaInicio,fechaFin, descripcionBaja, parteBaja, tipoRegistro, estado_solicitudBaja)values(@idUsuario,@idUsuario,@fechaInicio, @descripcion,@parteBaja,  @registro,@estado);SELECT SCOPE_IDENTITY()        
+        insert into Registro_Entrada_Salida(idUsuario,inicio_fecha,fin_fecha, descripcion_baja, parte_baja, tipo_solicitud, estado_solicitud,creado_idUsuario,creado_fecha,eliminado)values(@idUsuario,@fechaInicio, @fechaFin, @descripcion,@parteBaja, @registro,@estado,@idUsuario,@fechaCreado,@eliminado);SELECT SCOPE_IDENTITY()        
         "
 
         Try
@@ -188,8 +248,13 @@ Public Class Baja1
 
             Dim fechaInicio = New System.Data.SqlClient.SqlParameter
             fechaInicio.ParameterName = "fechaInicio"
-            fechaInicio.Value = Date.Now
+            fechaInicio.Value = hdnFechaIniBaja.Value
             comando.Parameters.Add(fechaInicio)
+
+            Dim fechaFin = New System.Data.SqlClient.SqlParameter
+            fechaFin.ParameterName = "fechaFin"
+            fechaFin.Value = hdnFechaFinBaja.Value
+            comando.Parameters.Add(fechaFin)
 
             Dim descripcion = New SqlParameter
             descripcion.ParameterName = "descripcion"
@@ -211,13 +276,24 @@ Public Class Baja1
             estado.Value = "solicitado"
             comando.Parameters.Add(estado)
 
+            Dim creadoFecha = New SqlParameter
+            creadoFecha.ParameterName = "fechaCreado"
+            creadoFecha.Value = DateTime.Now
+            comando.Parameters.Add(creadoFecha)
+
+            Dim eliminado = New SqlParameter
+            eliminado.ParameterName = "eliminado"
+            eliminado.Value = 0
+            comando.Parameters.Add(eliminado)
+
+
             comando.Connection = miCon
             comando.CommandText = cadenaSQL 'nombre del S.P.
 
             miCon.Open()
             ConexionAbierta = True
 
-            Dim r = comando.ExecuteScalar
+            Dim r As Integer = comando.ExecuteScalar
 
             SubirParteMedico(flParte)
 
@@ -238,4 +314,6 @@ Public Class Baja1
     Private Sub btnVolver_Click(sender As Object, e As ImageClickEventArgs) Handles btnVolver.Click
         Response.Redirect("Entrada_Salida")
     End Sub
+#End Region
+
 End Class

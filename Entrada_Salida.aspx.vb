@@ -33,13 +33,15 @@ Public Class Entrada_Salida
         Dim miCon As New System.Data.SqlClient.SqlConnection(B_CadenaConexionBBDD)
         Dim cadenaSQL As String =
         $"       
-        insert into Registro_Entrada_Salida(idUsuario,entrada,creado_idUsuario,tipoRegistro)values(@idUsuario,@entrada,@idUsuario,@registro);SELECT SCOPE_IDENTITY()        
+        insert into Registro_Entrada_Salida(idUsuario,inicio_fecha,tipo_solicitud,creado_idUsuario,creado_fecha,eliminado)values(@idUsuario,@entrada,@tipo,@idUsuario,@fechaCreado,@eliminado);SELECT SCOPE_IDENTITY()        
 
         "
 
 
 
         Try
+
+
             Dim idUSuario As System.Data.SqlClient.SqlParameter
             idUSuario = New System.Data.SqlClient.SqlParameter
             idUSuario.ParameterName = "idUsuario"
@@ -53,9 +55,20 @@ Public Class Entrada_Salida
             comando.Parameters.Add(entry)
 
             Dim registro = New SqlParameter
-            registro.ParameterName = "registro"
+            registro.ParameterName = "tipo"
             registro.Value = "jornada laboral"
             comando.Parameters.Add(registro)
+
+            Dim creadoFecha = New SqlParameter
+            creadoFecha.ParameterName = "fechaCreado"
+            creadoFecha.Value = DateTime.Now
+            comando.Parameters.Add(creadoFecha)
+
+            Dim eliminado = New SqlParameter
+            eliminado.ParameterName = "eliminado"
+            eliminado.Value = 0
+            comando.Parameters.Add(eliminado)
+
 
             comando.Connection = miCon
             comando.CommandText = cadenaSQL 'nombre del S.P.
@@ -97,7 +110,7 @@ Public Class Entrada_Salida
         Dim cadenaSQL As String =
         $"
       
-        update Registro_Entrada_Salida set salida = @salida where id =@id
+        update Registro_Entrada_Salida set fin_fecha = @salida where id =@id
         
 
         "
@@ -181,9 +194,9 @@ Public Class Entrada_Salida
         HoraEntrada.Visible = True
         Dim entry As Date = DateTime.Now
         Entrada.Visible = False
-        lblEntrada.Visible = False
+
         btnSalida.Visible = True
-        lblSalida.Visible = True
+
 
         lblHoraEntrada.Text = "Has entrado a las " & entry.Hour.ToString & " horas y " & entry.Minute.ToString & " minutos"
 
@@ -197,7 +210,6 @@ Public Class Entrada_Salida
         tiempoTrabajado.Visible = True
 
         lblTiempoTrabajado.Text = "Son las " & hora & " horas y " & min & " minutos ¿Seguro que quieres salir?"
-
 
 
     End Sub
@@ -223,15 +235,22 @@ Public Class Entrada_Salida
         Dim cadenaSQL As String =
         $"
        
-        update Registro_Entrada_Salida = null where id =@id
+        update Registro_Entrada_Salida set fin_fecha = null where id =@id
         
         "
 
         Try
+
+            Dim id = New SqlParameter
+            id.ParameterName = "id"
+            id.Value = Hidden.Value
+            cSelect.Parameters.Add(id)
+
             cSelect.Connection = miCon
             cSelect.CommandText = cadenaSQL
             miCon.Open()
             ConexionAbierta = True
+
 
             Dim r As Integer = cSelect.ExecuteScalar
 

@@ -11,6 +11,9 @@
            margin-left:40px
             
         }
+        .divIntervaloBaja{
+            margin-top:20px
+        }
         .row-fluid{
             margin-top:10px
         }       
@@ -67,18 +70,48 @@
          
          
       }
-      #btnSetVacaciones{
+      #btnSetBaja{
           color:darkslateblue
       }
-      #comboSolicitud{
-          color:darkslateblue
+     
+      #calBaja{
+          position:relative;
+          top: 20px;
+            left: 0px;
+            width: 237px;
+        }
+      #lblIniBaja{
+          position: absolute;
+          top: 480px;
+          left: 900px;
+        }
+      #lblFinBaja{
+          position: absolute;
+          top:500px;
+          left: 900px
+      }
+      #btnSetBaja{
+          margin-top: 30px;
+          width: 150px
+      }
+      #btnCancelarBaja{
+          position:absolute;
+          top:594px;
+          margin-left: 10px;
+          color: darkslateblue
       }
       #btnSolicitudes {
             position: absolute;
-            top: 193px;
+            top: 194px;
             left: 590px;
+            text-align:left;
+            color: darkcyan
             
         }
+      #lblBaja{
+          position:absolute;
+          top:385px;
+      }
       /*.form-bajaCorta #btnConfirmar{
             margin-left: 400px
       }*/
@@ -118,6 +151,14 @@
                 </div>
                 <div class="divIntervaloBaja">
                     <asp:Calendar ID="calBaja" runat="server"></asp:Calendar>
+                    <asp:Label ID="lblBaja" runat="server" Text="Selecciona los días de baja:"></asp:Label>
+                    <asp:Label ID="lblIniBaja" runat="server" Text="Inicio baja: "></asp:Label>
+                    <asp:Label ID="lblFinBaja" runat="server" Text="Fin baja: " ></asp:Label>
+                    <asp:Button ID="btnSetBaja" runat="server" Text="Establecer Fecha Inicio" />
+                    <asp:Button ID="btnCancelarBaja" runat="server" Text="Cancelar" />
+                    <asp:HiddenField ID="contadorBaja" value="0" runat="server" />
+                    <asp:HiddenField ID="hdnFechaIniBaja" runat="server" />
+                    <asp:HiddenField ID="hdnFechaFinBaja" runat="server" />
                 </div>
                 <div class="descripcion">
                     <asp:Label ID="lblDescripcion" runat="server" Text="Descripción:"></asp:Label>
@@ -131,7 +172,7 @@
                 <asp:Button ID="btnConfirmarBaja" runat="server" Text="Confirmar" />
             </div>
             <div class="formVacaciones" id="divFormVacaciones" runat="server" visible="false">
-                <asp:Label ID="lblVacaciones" runat="server" Text="Elige los días de vacaciones que quieres:"></asp:Label>
+                <asp:Label ID="lblVacaciones" runat="server" Text="Selecciona los días de vacaciones:"></asp:Label>
                 <asp:Label ID="lblInicioVacaciones" runat="server" Text="Inicio vacaciones: "></asp:Label>
                 <asp:Label ID="lblFinVacaciones" runat="server" Text="Fin vacaciones: " ></asp:Label>
                 <asp:Calendar ID="calVacaciones" runat="server"></asp:Calendar><br />

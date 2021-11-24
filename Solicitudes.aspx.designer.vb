@@ -113,6 +113,78 @@ Partial Public Class Baja1
     Protected WithEvents calBaja As Global.System.Web.UI.WebControls.Calendar
 
     '''<summary>
+    '''Control lblBaja.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblBaja As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control lblIniBaja.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblIniBaja As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control lblFinBaja.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblFinBaja As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control btnSetBaja.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnSetBaja As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Control btnCancelarBaja.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnCancelarBaja As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Control contadorBaja.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents contadorBaja As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control hdnFechaIniBaja.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents hdnFechaIniBaja As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control hdnFechaFinBaja.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents hdnFechaFinBaja As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''Control lblDescripcion.
     '''</summary>
     '''<remarks>
