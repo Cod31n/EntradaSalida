@@ -9,6 +9,7 @@ Public Class Baja1
 
     End Sub
 
+
     Public Sub ElegirBaja()
         Dim fechaInicio As Date
         Dim fechaFin As Date

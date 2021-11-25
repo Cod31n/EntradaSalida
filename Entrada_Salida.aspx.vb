@@ -8,90 +8,134 @@ Public Class Entrada_Salida
     Private Sub Entrada_Salida_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not Me.IsPostBack Then
             saludo.Visible = True
+
+            Dim oES As New EntradaSalida
+
+            oES.obtener_lista()
+
+
+            'Dim idRegistro As Integer = 0
+
+            ''lectura
+            'Dim oES As New EntradaSalida(idRegistro)
+            'Debug.WriteLine($"idRegistro={oES.ID}")
+            'Debug.WriteLine($"idUsuario={oES.idUsuario}")
+
+            ''guardar
+            'Dim oES2 As New EntradaSalida()
+            'oES2.idUsuario = 1
+            'oES2.inicio_fecha = Now()
+
+            'oES2.guardar_registro()
+
+
+            'Dim datos As New EntradaSalida.datos
+            'datos.idUsuario = 1
+            'datos.inicio_fecha = Now
+
+            'oES2.guardar_registro(datos)
+
+            'Dim filtro As New EntradaSalida.Filtro
+            'filtro.idUsuario = 1
+            'filtro.inicio_fecha = Now
+            'oES2.obtener_lista(filtro)
         End If
 
     End Sub
-    Public Function RegistrarEntrada() As Integer
-        Dim Errores As String = ""
-        'Dim B_CadenaConexionBBDD As String = "Server=PC-TECNICO;Database=mibd;User Id=DALKOM2\tecnico;Password=seKom2019@"
-        Dim B_CadenaConexionBBDD As String = "Persist Security Info=False;Integrated Security=true;  
-                                                    Initial Catalog=mibd;Server=MSSQL1; Persist Security Info=False;Integrated Security=SSPI;  
-                                                    database=mibd;server=(local); Persist Security Info=False;Trusted_Connection=True;  
-                                                    database=mibd;server=(local)"
-
-        'Validación parametros de entradas
-        'If idProvincia <= 0 Then
-        '    Errores = "Debes especificar idProvincia"
-        '    Return Errores
-        'End If
 
 
+    'Public Function RegistrarEntrada() As Integer
+    '    Dim Errores As String = ""
+    '    'Dim B_CadenaConexionBBDD As String = "Server=PC-TECNICO;Database=mibd;User Id=DALKOM2\tecnico;Password=seKom2019@"
+    '    Dim B_CadenaConexionBBDD As String = "Persist Security Info=False;Integrated Security=true;  
+    '                                                Initial Catalog=mibd;Server=MSSQL1; Persist Security Info=False;Integrated Security=SSPI;  
+    '                                                database=mibd;server=(local); Persist Security Info=False;Trusted_Connection=True;  
+    '                                                database=mibd;server=(local)"
 
-        'Conexion SQL2000
-        Dim ConexionAbierta As Boolean = False
-        Dim comando As New System.Data.SqlClient.SqlCommand
-        Dim miCon As New System.Data.SqlClient.SqlConnection(B_CadenaConexionBBDD)
-        Dim cadenaSQL As String =
-        $"       
-        insert into Registro_Entrada_Salida(idUsuario,inicio_fecha,tipo_solicitud,creado_idUsuario,creado_fecha,eliminado)values(@idUsuario,@entrada,@tipo,@idUsuario,@fechaCreado,@eliminado);SELECT SCOPE_IDENTITY()        
-
-        "
+    '    'Validación parametros de entradas
+    '    'If idProvincia <= 0 Then
+    '    '    Errores = "Debes especificar idProvincia"
+    '    '    Return Errores
+    '    'End If
 
 
 
-        Try
+    '    'Conexion SQL2000
+    '    Dim ConexionAbierta As Boolean = False
+    '    Dim comando As New System.Data.SqlClient.SqlCommand
+    '    Dim miCon As New System.Data.SqlClient.SqlConnection(B_CadenaConexionBBDD)
+    '    Dim cadenaSQL As String =
+    '    $"       
+    '    insert into Registro_Entrada_Salida(idUsuario,inicio_fecha,tipo_solicitud,creado_idUsuario,creado_fecha,eliminado)values(@idUsuario,@entrada,@tipo,@idUsuario,@fechaCreado,@eliminado);SELECT SCOPE_IDENTITY()        
+
+    '    "
 
 
-            Dim idUSuario As System.Data.SqlClient.SqlParameter
-            idUSuario = New System.Data.SqlClient.SqlParameter
-            idUSuario.ParameterName = "idUsuario"
-            idUSuario.Value = 28850
-            comando.Parameters.Add(idUSuario)
+
+    '    Try
+
+    '        Dim registroEntrada As New EntradaSalida(0, 28850, DateTime.Now, "jornada laboral", 28850, DateTime.Now, 0)
+
+    '        If registroEntrada.validar_propiedades() = True Then
 
 
-            Dim entry = New System.Data.SqlClient.SqlParameter
-            entry.ParameterName = "entrada"
-            entry.Value = DateTime.Now
-            comando.Parameters.Add(entry)
-
-            Dim registro = New SqlParameter
-            registro.ParameterName = "tipo"
-            registro.Value = "jornada laboral"
-            comando.Parameters.Add(registro)
-
-            Dim creadoFecha = New SqlParameter
-            creadoFecha.ParameterName = "fechaCreado"
-            creadoFecha.Value = DateTime.Now
-            comando.Parameters.Add(creadoFecha)
-
-            Dim eliminado = New SqlParameter
-            eliminado.ParameterName = "eliminado"
-            eliminado.Value = 0
-            comando.Parameters.Add(eliminado)
 
 
-            comando.Connection = miCon
-            comando.CommandText = cadenaSQL 'nombre del S.P.
-
-            miCon.Open()
-            ConexionAbierta = True
-
-            Dim r = comando.ExecuteScalar
-            Debug.WriteLine(r.ToString)
+    '            Dim parametro As System.Data.SqlClient.SqlParameter
+    '            parametro = New System.Data.SqlClient.SqlParameter
+    '            parametro.ParameterName = "idUsuario"
+    '            parametro.Value = registroEntrada.idUsuario
+    '            comando.Parameters.Add(parametro)
 
 
-            Errores = r.ToString
-            Return Convert.ToInt32(r)
-        Catch ex As Exception
+    '            parametro = New System.Data.SqlClient.SqlParameter
+    '            parametro.ParameterName = "entrada"
+    '            parametro.Value = registroEntrada.inicio_fecha
+    '            comando.Parameters.Add(parametro)
+
+    '            parametro = New SqlParameter
+    '            parametro.ParameterName = "tipo"
+    '            parametro.Value = registroEntrada.tipo_solicitud
+    '            comando.Parameters.Add(parametro)
+
+    '            parametro = New SqlParameter
+    '            parametro.ParameterName = "fechaCreado"
+    '            parametro.Value = registroEntrada.creado_fecha
+    '            comando.Parameters.Add(parametro)
+
+    '            parametro = New SqlParameter
+    '            parametro.ParameterName = "eliminado"
+    '            parametro.Value = registroEntrada.eliminado
+    '            comando.Parameters.Add(parametro)
 
 
-            Throw ex
-        Finally
-            If ConexionAbierta Then miCon.Close()
-            comando = Nothing
-            miCon = Nothing
-        End Try
-    End Function
+    '            comando.Connection = miCon
+    '            comando.CommandText = cadenaSQL 'nombre del S.P.
+
+    '            miCon.Open()
+    '            ConexionAbierta = True
+
+    '            Dim r = comando.ExecuteScalar
+    '            Debug.WriteLine(r.ToString)
+    '            Errores = r.ToString
+    '            Return Convert.ToInt32(r)
+    '        Else
+    '            Return 0
+    '        End If
+
+
+
+
+    '    Catch ex As Exception
+
+
+    '        Throw ex
+    '    Finally
+    '        If ConexionAbierta Then miCon.Close()
+    '        comando = Nothing
+    '        miCon = Nothing
+    '    End Try
+    'End Function
 
 
     Public Function RegistrarSalida(idReg As Integer) As String
@@ -117,34 +161,12 @@ Public Class Entrada_Salida
 
         Try
 
-            Dim salida = New SqlParameter
-            salida.ParameterName = "salida"
-            salida.Value = DateTime.Now
-            cSelect.Parameters.Add(salida)
-
-            Dim id = New SqlParameter
-            id.ParameterName = "id"
-            id.Value = idReg
-            cSelect.Parameters.Add(id)
 
 
-            cSelect.Connection = miCon
-            cSelect.CommandText = cadenaSQL
-            miCon.Open()
-            ConexionAbierta = True
-
-            Dim r As Integer = cSelect.ExecuteScalar
-
-
-
-            Errores = r.ToString
-            Return Errores
         Catch ex As Exception
             Throw ex
         Finally
-            If ConexionAbierta Then miCon.Close()
-            cSelect = Nothing
-            miCon = Nothing
+
         End Try
 
     End Function
@@ -190,8 +212,13 @@ Public Class Entrada_Salida
 
     'End Function
     Private Sub Entrada_Click(sender As Object, e As ImageClickEventArgs) Handles Entrada.Click
-        Hidden.Value = Me.RegistrarEntrada()
-        HoraEntrada.Visible = True
+        Dim oES As New EntradaSalida.datos
+        oES.id = 0
+        oES.idUsuario = 28850
+        oES.inicio_fecha = Now
+        oES
+
+        horaEntrada.Visible = True
         Dim entry As Date = DateTime.Now
         Entrada.Visible = False
 
