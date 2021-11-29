@@ -1,12 +1,13 @@
 ﻿Imports System.Data.SqlClient
+Imports System.IO
 Imports System.Web.Mvc
+
 
 Public Class EntradaSalida
     Dim Errores As String = ""
     Dim B_CadenaConexionBBDD As String = "Persist Security Info=False;Integrated Security=true;  
                                                         Initial Catalog=mibd;Server=MSSQL1; Persist Security Info=False;Integrated Security=SSPI;  
-                                                        database=mibd;server=(local); Persist Security Info=False;Trusted_Connection=True;  
-                                                       "
+                                                        database=mibd;server=(local); Persist Security Info=False;Trusted_Connection=True"
     Dim ConexionAbierta As Boolean = False
     Dim comando As New System.Data.SqlClient.SqlCommand
     Dim miCon As New System.Data.SqlClient.SqlConnection(B_CadenaConexionBBDD)
@@ -14,12 +15,12 @@ Public Class EntradaSalida
 
     Public Class datos
         Public Property id As Integer = 0
-        Public Property idUsuario As Integer = 28850
+        Public Property idUsuario As Integer = 0
         '<Required(ErrorMessage:="La fecha de inicio es obligtoria")>
         Public Property inicio_fecha As Nullable(Of DateTime) = Nothing
         Public Property fin_fecha As Nullable(Of DateTime) = Nothing
         Public Property descripcion_baja As String = Nothing
-        Public Property parte_baja As String = Nothing
+        Public Property parte_baja As FileUpload = Nothing
         Public Property tipo_solicitud As String = Nothing
         Public Property estado_solicitud As String = Nothing
 
@@ -31,33 +32,33 @@ Public Class EntradaSalida
             End Get
         End Property
     End Class
-    Class Filtro
+    Public Class Filtro
         Public Property id As Integer = 0
-        Public Property idUsuario As Integer = 28850
+        Public Property idUsuario As Integer = 0
         '<Required(ErrorMessage:="La fecha de inicio es obligtoria")>
         Public Property inicio_fecha As Nullable(Of DateTime) = Nothing
         Public Property fin_fecha As Nullable(Of DateTime) = Nothing
         Public Property descripcion_baja As String = Nothing
-        Public Property parte_baja As String = Nothing
+        Public Property parte_baja As FileUpload = Nothing
         Public Property tipo_solicitud As String = Nothing
         Public Property estado_solicitud As String = Nothing
 
-        Function generarfiltro() As String
+        Public Function generarfiltro() As String
             Dim fitroTexto As String = ""
-            If ID > 0 Then fitroTexto &= $"and p.id={ID}"
-            If inicio_fecha IsNot Nothing Then fitroTexto &= $"and p.inicio_fecha={inicio_fecha}"
-
+            If id > 0 Then fitroTexto &= $"and id={id}"
+            If inicio_fecha IsNot Nothing Then fitroTexto &= $"and inicio_fecha={inicio_fecha}"
+            If tipo_solicitud IsNot Nothing Then fitroTexto &= $"and tipo_solicitud='{tipo_solicitud}'"
             Return fitroTexto
         End Function
     End Class
 
     Public Property id As Integer = 0
-    Public Property idUsuario As Integer = 28850
+    Public Property idUsuario As Integer = 0
     '<Required(ErrorMessage:="La fecha de inicio es obligtoria")>
     Public Property inicio_fecha As Nullable(Of DateTime) = Nothing
     Public Property fin_fecha As Nullable(Of DateTime) = Nothing
     Public Property descripcion_baja As String = Nothing
-    Public Property parte_baja As String = Nothing
+    Public Property parte_baja As FileUpload = Nothing
     Public Property tipo_solicitud As String = Nothing
     Public Property estado_solicitud As String = Nothing
 
@@ -115,7 +116,7 @@ Public Class EntradaSalida
 
 
     Public Sub New(iD As Integer, idUsuario As Integer, inicio_fecha As Date?, fin_fecha As Date?, descripcion_baja As String,
-                   parte_baja As String, tipo_solicitud As String, estado_solicitud As String, creadoIdUsuario As Integer, creadoFecha As Date,
+                   parte_baja As FileUpload, tipo_solicitud As String, estado_solicitud As String, creadoIdUsuario As Integer, creadoFecha As Date,
                    modificadoIdUsuario As Integer?, modificadoFecha As Integer?, eliminadoB As Boolean, eliminadoIdUsuario As Integer?, eliminadoFecha As Date?,
                    v1 As Integer, now1 As Date, v2 As String, v3 As Integer, now2 As Date, v4 As Integer)
         Me.New(iD)
@@ -137,7 +138,7 @@ Public Class EntradaSalida
     End Sub
 
     Public Sub New(iD As Integer)
-        Me.ID = iD
+        Me.id = iD
         'obtener_detalle()
     End Sub
 
@@ -148,6 +149,7 @@ Public Class EntradaSalida
 
     Public Function validar() As Boolean
         Dim valido As Boolean = True
+        Dim digito As String = "[0-9]"
 
         If Not IsNumeric(idUsuario) Then
             valido = False
@@ -185,7 +187,7 @@ Public Class EntradaSalida
         Dim cadenaSQL As String = ""
         Dim param As SqlParameter = New SqlParameter
         If RegistroNueo Then
-            cadenaSQL = $"insert into Registro_Entrada_Salida(idUsuario,inicio_fecha,tipo_solicitud,creado_idUsuario,creado_fecha,eliminado) values(@idUsuario,@entrada,@tipo,@idUsuario,getdate(),@eliminado);SELECT SCOPE_IDENTITY()"
+            cadenaSQL = $"insert into Registro_Entrada_Salida(idUsuario,inicio_fecha,fin_fecha,descripcion_baja,parte_baja,tipo_solicitud,creado_idUsuario,creado_fecha,eliminado) values(@idUsuario,@entrada,@salida,@descripcion_baja,@parte_baja,@tipo,@idUsuario,getdate(),@eliminado);SELECT SCOPE_IDENTITY()"
 
             param = New SqlParameter
             param.ParameterName = "id"
@@ -193,13 +195,8 @@ Public Class EntradaSalida
             comando.Parameters.Add(param)
 
             param = New SqlParameter
-            param.ParameterName = "eliminado"
-            param.Value = False
-            comando.Parameters.Add(param)
-
-            param = New SqlParameter
             param.ParameterName = "creado_idUsuario"
-            param.Value = id
+            param.Value = creado_idUsuario
             comando.Parameters.Add(param)
 
             'param = New SqlParameter
@@ -209,7 +206,7 @@ Public Class EntradaSalida
 
         Else
             'modificar
-            cadenaSQL = $"update Registro_Entrada_Salida set fin_fecha = @salida where id =@id"
+            cadenaSQL = $"update Registro_Entrada_Salida set fin_fecha = @salida, modificado_idUsuario = @modificado_idUsuario, modificado_fecha = @modificado_fecha where id =@id"
 
             param = New SqlParameter
             param.ParameterName = "id"
@@ -221,10 +218,10 @@ Public Class EntradaSalida
             param.Value = id
             comando.Parameters.Add(param)
 
-            'param = New SqlParameter
-            'param.ParameterName = "modificado_fecha"
-            'param.Value = id
-            'comando.Parameters.Add(param)
+            param = New SqlParameter
+            param.ParameterName = "modificado_fecha"
+            param.Value = Now
+            comando.Parameters.Add(param)
 
         End If
 
@@ -235,7 +232,7 @@ Public Class EntradaSalida
             'insertar
             Try
 
-
+                param = New SqlParameter
                 param.ParameterName = "idUsuario"
                 param.Value = idUsuario
                 comando.Parameters.Add(param)
@@ -246,18 +243,35 @@ Public Class EntradaSalida
                 comando.Parameters.Add(param)
 
                 param = New SqlParameter
+                param.ParameterName = "salida"
+                param.Value = IIf(fin_fecha.HasValue = True, fin_fecha.Value, Nothing)
+                comando.Parameters.Add(param)
+
+                param = New SqlParameter
+                param.ParameterName = "descripcion_baja"
+                param.Value = descripcion_baja
+                comando.Parameters.Add(param)
+
+                param = New SqlParameter
+                param.ParameterName = "parte_baja"
+                If parte_baja IsNot Nothing Then
+                    param.Value = parte_baja.FileName 'PREGUNTAR A LEE 
+                Else
+                    param.Value = DBNull.Value
+                End If
+
+                comando.Parameters.Add(param)
+
+                param = New SqlParameter
                 param.ParameterName = "tipo"
                 param.Value = tipo_solicitud
                 comando.Parameters.Add(param)
 
-                param = New SqlParameter
-                param.ParameterName = "fechaCreado"
-                param.Value = creado_fecha
-                comando.Parameters.Add(param)
+
 
                 param = New SqlParameter
-                param.ParameterName = "fechaCreado"
-                param.Value = creado_fecha
+                param.ParameterName = "estado"
+                param.Value = IIf(estado_solicitud IsNot Nothing, estado_solicitud, DBNull.Value)
                 comando.Parameters.Add(param)
 
                 param = New SqlParameter
@@ -286,11 +300,10 @@ Public Class EntradaSalida
 
         Else
 
-
             Try
-
+                param = New SqlParameter
                 param.ParameterName = "salida"
-                param.Value = fin_fecha
+                param.Value = IIf(fin_fecha Is Nothing, DBNull.Value, fin_fecha)
                 comando.Parameters.Add(param)
 
 
@@ -316,11 +329,19 @@ Public Class EntradaSalida
         End If
     End Function
 
-    Public Function BajaTemporal_Alta(idUsuario As Integer, FechaDesde As Date, FechaHasta As Date, ParteMedico_RutaFichero As String) As Integer
+    Public Function BajaTemporal_Alta(idUsuario As Integer, FechaDesde As Date, FechaHasta As Date, Descripcion As String, ParteMedico As FileUpload) As Integer
+        Dim carpetaArchivos As String = HttpContext.Current.Server.MapPath("~\PartesMedicos\")
         Dim datos As New EntradaSalida
         datos.idUsuario = idUsuario
         datos.inicio_fecha = FechaDesde
+        datos.fin_fecha = FechaHasta
+        datos.descripcion_baja = Descripcion
+        ParteMedico.SaveAs(carpetaArchivos & Path.GetFileName(ParteMedico.FileName))
+        datos.parte_baja = ParteMedico
+        datos.tipo_solicitud = "Baja Temporal"
+        datos.estado_solicitud = "solicitado"
         datos.guardar()
+
     End Function
 
     Public Function obtener_lista(oFiltro As Filtro) As DataTable
@@ -331,7 +352,7 @@ Public Class EntradaSalida
 
 
     Public Function obtener_lista(filtroTXT As String) As DataTable
-        cadenaSQL = $"select * from Registro_Entrada_Salida where 1=1 {filtroTXT}"
+        Dim cadenaSQL As String = $"select * from Registro_Entrada_Salida where 1=1 {filtroTXT}"
 
         Try
             comando.Connection = miCon

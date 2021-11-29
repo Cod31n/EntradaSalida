@@ -11,7 +11,7 @@ Public Class Entrada_Salida
 
             Dim oES As New EntradaSalida
 
-            oES.obtener_lista()
+            'oES.obtener_lista()
 
 
             'Dim idRegistro As Integer = 0
@@ -138,38 +138,37 @@ Public Class Entrada_Salida
     'End Function
 
 
-    Public Function RegistrarSalida(idReg As Integer) As String
-        'VALIDAR PARAMETROS DE ENTRADA!!!!
-        Dim Errores As String = ""
-        Dim B_CadenaConexionBBDD As String = "Persist Security Info=False;Integrated Security=true;  
-                                                    Initial Catalog=mibd;Server=MSSQL1" &
-                                                "Persist Security Info=False;Integrated Security=SSPI;  
-                                                    database=mibd;server=(local)" &
-                                                "Persist Security Info=False;Trusted_Connection=True;  
-                                                    database=mibd;server=(local)"
 
-        Dim ConexionAbierta As Boolean = False
-        Dim cSelect As New System.Data.SqlClient.SqlCommand
-        Dim miCon As New System.Data.SqlClient.SqlConnection(B_CadenaConexionBBDD)
-        Dim cadenaSQL As String =
-        $"
-      
-        update Registro_Entrada_Salida set fin_fecha = @salida where id =@id
-        
+    'Public Function RegistrarSalida(idReg As Integer) As String
+    '    'VALIDAR PARAMETROS DE ENTRADA!!!!
+    '    Dim Errores As String = ""
+    '    Dim B_CadenaConexionBBDD As String = "Persist Security Info=False;Integrated Security=true;  
+    '                                                Initial Catalog=mibd;Server=MSSQL1;Persist Security Info=False;Integrated Security=SSPI;  
+    '                                                database=mibd;server=(local);Persist Security Info=False;Trusted_Connection=True;"
 
-        "
+    '    Dim ConexionAbierta As Boolean = False
+    '    Dim cSelect As New System.Data.SqlClient.SqlCommand
+    '    Dim miCon As New System.Data.SqlClient.SqlConnection(B_CadenaConexionBBDD)
+    '    Dim cadenaSQL As String =
+    '    $"
 
-        Try
+    '    update Registro_Entrada_Salida set fin_fecha = @salida where id =@id
+
+
+    '    "
+
+    '    Try
 
 
 
-        Catch ex As Exception
-            Throw ex
-        Finally
+    '    Catch ex As 
 
-        End Try
+    '        Throw ex
+    '    Finally
 
-    End Function
+    '    End Try
+
+    'End Function
 
     'Public Function ObtenerTiempoTrabajado(id As Integer) As String
     '    Dim Errores As String = ""
@@ -212,31 +211,40 @@ Public Class Entrada_Salida
 
     'End Function
     Private Sub Entrada_Click(sender As Object, e As ImageClickEventArgs) Handles Entrada.Click
-        Dim oES As New EntradaSalida.datos
+        Dim oES As New EntradaSalida
         oES.id = 0
         oES.idUsuario = 28850
         oES.inicio_fecha = Now
-        oES
+        oES.tipo_solicitud = "Jornada laboral"
+
+        Dim idRegistroNuevo As Integer = oES.guardar()
+
 
         horaEntrada.Visible = True
         Dim entry As Date = DateTime.Now
+        Hidden.Value = idRegistroNuevo
         Entrada.Visible = False
 
         btnSalida.Visible = True
 
 
-        lblHoraEntrada.Text = "Has entrado a las " & entry.Hour.ToString & " horas y " & entry.Minute.ToString & " minutos"
+        lblHoraEntrada.Text = $"Has entrado a las {entry.Hour.ToString} horas y {entry.Minute.ToString} minutos"
 
     End Sub
 
 
     Private Sub Salida_Click(sender As Object, e As ImageClickEventArgs) Handles btnSalida.Click
-        Me.RegistrarSalida(Hidden.Value)
+        Dim oES As New EntradaSalida
+        oES.id = Hidden.Value
+        oES.fin_fecha = Now
+
+        oES.guardar()
+
         Dim hora As String = DateTime.Now.Hour
         Dim min As String = DateTime.Now.Minute
         tiempoTrabajado.Visible = True
 
-        lblTiempoTrabajado.Text = "Son las " & hora & " horas y " & min & " minutos ¿Seguro que quieres salir?"
+        lblTiempoTrabajado.Text = $"Son las {hora} horas y {min} minutos ¿Seguro que quieres salir?"
 
 
     End Sub
@@ -250,48 +258,13 @@ Public Class Entrada_Salida
     End Sub
 
     Private Sub btnCancelarSalida_Click(sender As Object, e As EventArgs) Handles btnCancelarSalida.Click
-        Dim Errores As String = ""
+        Dim oES As New EntradaSalida
+        oES.id = Hidden.Value
+        oES.fin_fecha = Nothing
+        oES.guardar()
+
         tiempoTrabajado.Visible = False
-        Dim B_CadenaConexionBBDD As String = "Persist Security Info=False;Integrated Security=true;  
-                                                    Initial Catalog=mibd;Server=MSSQL1; Persist Security Info=False;Integrated Security=SSPI;  
-                                                    database=mibd;server=(local); Persist Security Info=False;Trusted_Connection=True; ; database=mibd;server=(local)"
 
-        Dim ConexionAbierta As Boolean = False
-        Dim cSelect As New System.Data.SqlClient.SqlCommand
-        Dim miCon As New System.Data.SqlClient.SqlConnection(B_CadenaConexionBBDD)
-        Dim cadenaSQL As String =
-        $"
-       
-        update Registro_Entrada_Salida set fin_fecha = null where id =@id
-        
-        "
-
-        Try
-
-            Dim id = New SqlParameter
-            id.ParameterName = "id"
-            id.Value = Hidden.Value
-            cSelect.Parameters.Add(id)
-
-            cSelect.Connection = miCon
-            cSelect.CommandText = cadenaSQL
-            miCon.Open()
-            ConexionAbierta = True
-
-
-            Dim r As Integer = cSelect.ExecuteScalar
-
-
-
-            Errores = r.ToString
-
-        Catch ex As Exception
-            Throw ex
-        Finally
-            If ConexionAbierta Then miCon.Close()
-            cSelect = Nothing
-            miCon = Nothing
-        End Try
     End Sub
 
     Private Sub btnConfirmarSalida_Click(sender As Object, e As EventArgs) Handles btnConfirmarSalida.Click
