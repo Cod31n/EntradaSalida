@@ -104,15 +104,6 @@ Partial Public Class Baja1
     Protected WithEvents radioTipoBaja As Global.System.Web.UI.WebControls.RadioButtonList
 
     '''<summary>
-    '''Control calBaja.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents calBaja As Global.System.Web.UI.WebControls.Calendar
-
-    '''<summary>
     '''Control lblBaja.
     '''</summary>
     '''<remarks>
@@ -120,6 +111,15 @@ Partial Public Class Baja1
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents lblBaja As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control calBaja.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents calBaja As Global.System.Web.UI.WebControls.Calendar
 
     '''<summary>
     '''Control lblIniBaja.
@@ -146,7 +146,7 @@ Partial Public Class Baja1
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnSetBaja As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnSetBaja As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
     '''Control btnCancelarBaja.
@@ -155,7 +155,7 @@ Partial Public Class Baja1
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnCancelarBaja As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnCancelarBaja As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
     '''Control contadorBaja.
@@ -227,7 +227,7 @@ Partial Public Class Baja1
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnConfirmarBaja As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnConfirmarBaja As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
     '''Control divFormVacaciones.
@@ -281,7 +281,7 @@ Partial Public Class Baja1
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnSetVacaciones As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnSetVacaciones As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
     '''Control btnCancelarVacaciones.
@@ -290,7 +290,7 @@ Partial Public Class Baja1
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnCancelarVacaciones As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnCancelarVacaciones As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
     '''Control contadorCal.
@@ -329,11 +329,29 @@ Partial Public Class Baja1
     Protected WithEvents divErrores As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''Control lblError.
+    '''Control listErrores.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblError As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents listErrores As Global.System.Web.UI.WebControls.BulletedList
+
+    '''<summary>
+    '''Control divExito.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents divExito As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Control lblExito.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblExito As Global.System.Web.UI.WebControls.Label
 End Class

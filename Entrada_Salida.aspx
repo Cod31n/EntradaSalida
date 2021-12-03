@@ -6,35 +6,32 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-    <style type="text/css">
-        #form1 {
-            
-            width: 1280px;
-        }
+    <style type="text/css">       
     </style>
+    <link href="CssEntradaSalida.css" rel="stylesheet" />
 </head>
-<body>
+<body style="background-color:gainsboro">
        
-    <form id="form1" runat="server" style="position:relative; top: 0px; left: 0px;">
-        <asp:ImageButton ID="btnCabecera" runat="server" ImageUrl="~/Resources/cabecera.png" Height="89px" Width="1725px" />
-        <div id="saludo" visible="false" runat="server" style="left: 500px; top:300px; background-color:ghostwhite; position:absolute; z-index:2;height: 105px; width: 400px; border-style:solid">
-                    <asp:Label ID="Label1" runat="server" Text="¡Hola! Deberías registrar tu entrada pulsando el botón de 'Entrar'"></asp:Label>
+    <form id="form1" runat="server" style="">
+        <asp:ImageButton ID="btnCabecera" runat="server" ImageUrl="~/Resources/cabecera.png" Height="89px" Width="1913"/>
+        
+        <div id="divSaludo" visible="false" runat="server" class="">
+                    <asp:Label ID="lblSaludo" runat="server" Text="¡Hola! Deberías registrar tu entrada pulsando el botón de 'Entrar'"></asp:Label>
                 <br />
-                    <asp:Button ID="btnCerrarSaludo" style="position:center" runat="server" Text="Cerrar"/>
+                    <asp:ImageButton ID="btnCerrarSaludo" ImageUrl="~/Resources/btnCerrar.PNG" runat="server" />
         </div>
-        <div id="horaEntrada" visible="false" runat="server" style="left: 500px; top:300px;background-color:ghostwhite; position:absolute; z-index:2; height: 105px; width: 400px; border-style:solid">
+        <div id="divHoraEntrada" visible="false" runat="server">
                     <asp:Label ID="lblHoraEntrada" runat="server"></asp:Label>
             <br />
-                    <asp:Button ID="btnCerrarHoraEntrada" runat="server" Text="Cerrar" />
+                    <asp:ImageButton ID="btnCerrarHoraEntrada" ImageUrl="~/Resources/btnCerrar.PNG" runat="server"/>
         </div>
-        <div id="tiempoTrabajado" visible="false" runat="server" style="left: 500px; top:300px;background-color:ghostwhite; position:absolute; z-index:2;height: 105px; width: 400px; border-style:solid">
+        <div id="divTiempoTrabajado" visible="false" runat="server">
              <asp:Label ID="lblTiempoTrabajado" runat="server"></asp:Label>
                     <br />
                     <asp:Button ID="btnCancelarSalida" runat="server" Text="Cancelar" />
                     <asp:Button ID="btnConfirmarSalida" runat="server" Text="Confirmar" />
         </div>
-        <div style="width:135%; background-color:gainsboro; height: 755px;z-index:1">
-           
+        <div id="divTabla">           
             <asp:Table ID="Table1" runat="server" Width="1280px" >
                 <asp:TableHeaderRow>
                     <asp:TableCell ColumnSpan="7">
@@ -60,14 +57,12 @@
                     <asp:TableCell>
                         <asp:ImageButton ID="ImageButton6" runat="server" ImageUrl="~/Resources/controleconomico.PNG"  />
                     </asp:TableCell>
-                    <asp:TableCell>
-                        
+                    <asp:TableCell>                        
                             <asp:ImageButton ID="Entrada" runat="server" ImageUrl="~/Resources/BotonEntada.PNG" data-toggle="tooltip" data-placement="bottom" title="Botón para registrar entrada"  />
-                     
-                       
-                            <asp:ImageButton ID="btnSalida" runat="server" ImageUrl="~/Resources/BotonSalida.PNG" Visible="False"  data-toggle="tooltip" data-placement="bottom" title="Botón para registrar salida" />
-                        
-                    </asp:TableCell></asp:TableRow><asp:TableRow>
+                            <asp:ImageButton ID="btnSalida" runat="server" ImageUrl="~/Resources/BotonSalida.PNG" Visible="False"  data-toggle="tooltip" data-placement="bottom" title="Botón para registrar salida" />                        
+                    </asp:TableCell>                    
+                </asp:TableRow>
+                <asp:TableRow>
                     <asp:TableCell>
                         <asp:ImageButton ID="ImageButton7" runat="server" ImageUrl="~/Resources/flota.PNG"  />
                     </asp:TableCell><asp:TableCell>
@@ -80,7 +75,10 @@
                         <asp:ImageButton ID="ImageButton11" runat="server" ImageUrl="~/Resources/parking.PNG"  />
                     </asp:TableCell><asp:TableCell>
                         <asp:ImageButton ID="ImageButton12" runat="server" ImageUrl="~/Resources/siniestros.PNG" />
-                    </asp:TableCell></asp:TableRow><asp:TableRow>
+                    </asp:TableCell>
+                    <asp:TableCell><asp:ImageButton ID="btnBuscar" runat="server"  ImageUrl="~/Resources/buscar.png"/></asp:TableCell>
+                               </asp:TableRow>
+                <asp:TableRow>
                     <asp:TableCell>
                         <asp:ImageButton ID="ImageButton13" runat="server" ImageUrl="~/Resources/healthsafety.PNG" />
                     </asp:TableCell><asp:TableCell>
@@ -93,10 +91,15 @@
                         <asp:ImageButton ID="ImageButton17" runat="server" ImageUrl="~/Resources/opcos.PNG"/>
                     </asp:TableCell><asp:TableCell>
                         <asp:ImageButton ID="ImageButton18" runat="server" ImageUrl="~/Resources/serviciosaux.PNG"  />
-                    </asp:TableCell></asp:TableRow><asp:TableRow>
+                    </asp:TableCell></asp:TableRow>
+                <asp:TableRow>
                     <asp:TableCell>
                         <asp:ImageButton ID="ImageButton19" runat="server" ImageUrl="~/Resources/obrasproperty.PNG"  />
-                    </asp:TableCell></asp:TableRow></asp:Table></div><asp:HiddenField ID="Hidden" runat="server" />
+                    </asp:TableCell>
+                    </asp:TableRow>
+              </asp:Table>
+        </div>
+        <asp:HiddenField ID="Hidden" runat="server" />
     </form>
 </body>
 </html>

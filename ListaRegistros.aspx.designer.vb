@@ -32,13 +32,49 @@ Partial Public Class ListaRegistros
     Protected WithEvents Image1 As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
-    '''Control divFiltros.
+    '''Control btnVolver.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents divFiltros As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents btnVolver As Global.System.Web.UI.WebControls.ImageButton
+
+    '''<summary>
+    '''Control divTipoResultado.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents divTipoResultado As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Control drpTipoResultado.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents drpTipoResultado As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control divBusquedaId.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents divBusquedaId As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Control lblDivId.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblDivId As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Control lblIdRegistro.
@@ -59,13 +95,40 @@ Partial Public Class ListaRegistros
     Protected WithEvents txtIdRegistro As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control lblIdUSuario.
+    '''Control btnBuscarDetalle.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblIdUSuario As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents btnBuscarDetalle As Global.System.Web.UI.WebControls.ImageButton
+
+    '''<summary>
+    '''Control btnEliminarRegistro.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnEliminarRegistro As Global.System.Web.UI.WebControls.ImageButton
+
+    '''<summary>
+    '''Control divFiltros.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents divFiltros As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Control lblIdUsuario.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblIdUsuario As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Control txtIdUsuario.
@@ -122,13 +185,31 @@ Partial Public Class ListaRegistros
     Protected WithEvents calFin As Global.System.Web.UI.WebControls.Calendar
 
     '''<summary>
+    '''Control divBotones.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents divBotones As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Control btnResetCalendarios.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnResetCalendarios As Global.System.Web.UI.WebControls.ImageButton
+
+    '''<summary>
     '''Control btnBuscar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnBuscar As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnBuscar As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
     '''Control divSelect.
@@ -140,11 +221,110 @@ Partial Public Class ListaRegistros
     Protected WithEvents divSelect As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''Control lboxRegistros.
+    '''Control tblRegistros.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lboxRegistros As Global.System.Web.UI.WebControls.ListBox
+    Protected WithEvents tblRegistros As Global.System.Web.UI.WebControls.Table
+
+    '''<summary>
+    '''Control divSelectList.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents divSelectList As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Control listRegistros.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents listRegistros As Global.System.Web.UI.WebControls.BulletedList
+
+    '''<summary>
+    '''Control divSelectId.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents divSelectId As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Control lblIdUsu.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblIdUsu As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control lblTipoSol.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblTipoSol As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control lblEstadoSol.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblEstadoSol As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control lblFechaIni.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblFechaIni As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control lblFechaFin.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblFechaFin As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control divError.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents divError As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Control lblError.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblError As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control btnCerrarError.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnCerrarError As Global.System.Web.UI.WebControls.ImageButton
 End Class

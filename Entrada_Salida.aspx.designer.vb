@@ -32,22 +32,22 @@ Partial Public Class Entrada_Salida
     Protected WithEvents btnCabecera As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
-    '''Control saludo.
+    '''Control divSaludo.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents saludo As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents divSaludo As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''Control Label1.
+    '''Control lblSaludo.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblSaludo As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Control btnCerrarSaludo.
@@ -56,16 +56,16 @@ Partial Public Class Entrada_Salida
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnCerrarSaludo As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnCerrarSaludo As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
-    '''Control horaEntrada.
+    '''Control divHoraEntrada.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents horaEntrada As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents divHoraEntrada As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''Control lblHoraEntrada.
@@ -83,16 +83,16 @@ Partial Public Class Entrada_Salida
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnCerrarHoraEntrada As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnCerrarHoraEntrada As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
-    '''Control tiempoTrabajado.
+    '''Control divTiempoTrabajado.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents tiempoTrabajado As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents divTiempoTrabajado As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''Control lblTiempoTrabajado.
@@ -264,6 +264,15 @@ Partial Public Class Entrada_Salida
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ImageButton12 As Global.System.Web.UI.WebControls.ImageButton
+
+    '''<summary>
+    '''Control btnBuscar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnBuscar As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
     '''Control ImageButton13.

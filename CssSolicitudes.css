@@ -1,0 +1,127 @@
+﻿.formVacaciones {
+    margin-left: 15%;
+}
+
+
+.tipoBaja {
+    margin-left: 14%;
+}
+
+.row-fluid {
+    margin-top: 10px
+}
+
+.card {
+    width: 59%;
+    margin-left: 21%;
+    border: groove;
+}
+
+.card-body {
+    color: darkslateblue;
+    width: 60%;
+    margin-left: 20%;
+    border: groove;
+}
+
+#divDescripcion {
+    margin-top: 50px;
+    margin-left: 14%;
+}
+
+#divIntervaloBaja {
+    margin-top: 20px;
+    margin-left: 15%;
+}
+
+#divArchivo {
+   /* margin-top: 50px;
+    margin-left: 14%;*/
+}
+
+#divTipoSolicitud {
+    margin-left: 14%;
+}
+
+#calVacaciones {
+    position: relative;
+    top: 20px;
+    left: 0px;
+    width: 237px;
+}
+#calBaja {
+    margin-top:10px;
+    align-self:center;
+    width: 237px;
+}
+
+#lblIniBaja {
+    position: absolute;
+    margin-left: 14%;
+    top: 50%
+}
+
+#lblFinBaja {
+    position: absolute;
+    margin-left: 14%;
+    top: 55%
+}
+#lblBaja {
+    /*position: absolute;*/
+    
+
+}
+#lblInicioVacaciones {
+    position: absolute;
+    left: 52%;
+    top: 40%
+}
+
+#lblFinVacaciones {
+    position: absolute;
+    left: 52%;
+    top: 45%
+}
+
+#lblError {
+    color: red
+}
+#btnSetBaja {
+    margin-top: 32px;
+    width: 150px
+}
+
+
+#btnSolicitudes {
+    position: absolute;
+    top: 194px;
+    left: 590px;
+    text-align: left;
+    color: darkcyan
+}
+#btnConfirmarBaja {
+ vertical-align:central
+}
+#btnVolver {
+    position: absolute;
+    top: 101px;
+    margin-left: 1445px;
+}
+
+#btnSetBaja {
+    color: darkslateblue;
+    height:60px
+}
+#btnSetVacaciones {
+    width:150px
+}
+
+#btnCancelarBaja {        
+    margin-left: 10px;   
+    
+   
+}
+#btnCancelarVacaciones {
+    margin-left: 10px;
+    color: darkslateblue
+}

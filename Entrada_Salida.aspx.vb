@@ -7,9 +7,9 @@ Public Class Entrada_Salida
 
     Private Sub Entrada_Salida_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not Me.IsPostBack Then
-            saludo.Visible = True
+            divSaludo.Visible = True
 
-            Dim oES As New EntradaSalida
+            Dim oES As New EntradaSalida.Dato
 
             'oES.obtener_lista()
 
@@ -212,17 +212,19 @@ Public Class Entrada_Salida
     'End Function
     Private Sub Entrada_Click(sender As Object, e As ImageClickEventArgs) Handles Entrada.Click
         Dim oES As New EntradaSalida
-        oES.id = 0
-        oES.idUsuario = 28850
-        oES.inicio_fecha = Now
-        oES.tipo_solicitud = "Jornada laboral"
+        oES.dato_ = New EntradaSalida.Dato
+        oES.dato_.id = 0
+        oES.dato_.idUsuario = 28850
+        oES.dato_.inicio_fecha = Now
+        oES.dato_.tipo_solicitud = "Jornada laboral"
 
-        Dim idRegistroNuevo As Integer = oES.guardar()
+
+        Dim RegistroNuevo As EntradaSalida.Errores = oES.guardar()
 
 
-        horaEntrada.Visible = True
+        divHoraEntrada.Visible = True
         Dim entry As Date = DateTime.Now
-        Hidden.Value = idRegistroNuevo
+        Hidden.Value = RegistroNuevo.Resultado_integer
         Entrada.Visible = False
 
         btnSalida.Visible = True
@@ -235,14 +237,17 @@ Public Class Entrada_Salida
 
     Private Sub Salida_Click(sender As Object, e As ImageClickEventArgs) Handles btnSalida.Click
         Dim oES As New EntradaSalida
-        oES.id = Hidden.Value
-        oES.fin_fecha = Now
+        oES.dato_ = New EntradaSalida.Dato
+        oES.dato_.id = Hidden.Value
+        oES.dato_.fin_fecha = Now
+        oES.dato_.tipo_solicitud = "Jornada Laboral"
+
 
         oES.guardar()
 
         Dim hora As String = DateTime.Now.Hour
         Dim min As String = DateTime.Now.Minute
-        tiempoTrabajado.Visible = True
+        divTiempoTrabajado.Visible = True
 
         lblTiempoTrabajado.Text = $"Son las {hora} horas y {min} minutos ¿Seguro que quieres salir?"
 
@@ -250,29 +255,35 @@ Public Class Entrada_Salida
     End Sub
 
     Private Sub CerrarSaludo_Click(sender As Object, e As EventArgs) Handles btnCerrarSaludo.Click
-        saludo.Visible = False
+        divSaludo.Visible = False
     End Sub
 
     Private Sub cerrarHoraEntrada_Click(sender As Object, e As EventArgs) Handles btnCerrarHoraEntrada.Click
-        horaEntrada.Visible = False
+        divHoraEntrada.Visible = False
     End Sub
 
     Private Sub btnCancelarSalida_Click(sender As Object, e As EventArgs) Handles btnCancelarSalida.Click
-        Dim oES As New EntradaSalida
+        Dim oES As New EntradaSalida.Dato
         oES.id = Hidden.Value
         oES.fin_fecha = Nothing
-        oES.guardar()
 
-        tiempoTrabajado.Visible = False
+        Dim o As New EntradaSalida()
+        o.guardar()
+
+        divTiempoTrabajado.Visible = False
 
     End Sub
 
     Private Sub btnConfirmarSalida_Click(sender As Object, e As EventArgs) Handles btnConfirmarSalida.Click
-        tiempoTrabajado.Visible = False
-        Response.Redirect("https://www.mybuildingvf.com/Vodafone")
+        divTiempoTrabajado.Visible = False
+
     End Sub
 
     Private Sub btnCabecera_Click(sender As Object, e As ImageClickEventArgs) Handles btnCabecera.Click
         Response.Redirect("PerfilUsuario")
+    End Sub
+
+    Private Sub btnBuscar_Click(sender As Object, e As ImageClickEventArgs) Handles btnBuscar.Click
+        Response.Redirect("ListaRegistros")
     End Sub
 End Class
